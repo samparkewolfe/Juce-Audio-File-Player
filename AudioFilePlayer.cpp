@@ -84,7 +84,7 @@ void AudioFilePlayer::output(AudioSampleBuffer *audioSampleBuffer)
 void AudioFilePlayer::resized()
 {
     auto localBounds = getLocalBounds();
-    localBounds.reduce(10, 10);
+    localBounds.reduce(5, 5);
 
     int yDivision = localBounds.getHeight() / 3.0f;
 
