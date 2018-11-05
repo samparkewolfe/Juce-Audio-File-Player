@@ -35,7 +35,7 @@ void AudioFilePlayer::addFiles(juce::Array<File> files)
 void AudioFilePlayer::addFile(File file)
 {
     m_files.add(file);
-    juce::AudioFormatReader* audioFormatReader = m_audioFormatManager.createReaderFor(file);
+    std::shared_ptr<juce::AudioFormatReader> audioFormatReader(m_audioFormatManager.createReaderFor(file));
     AudioSampleBuffer audioSampleBuffer ((int) audioFormatReader->numChannels,
                                          (int) audioFormatReader->lengthInSamples);
     audioFormatReader->read(&audioSampleBuffer,
@@ -45,7 +45,7 @@ void AudioFilePlayer::addFile(File file)
                             true,
                             true);
     m_buffers.push_back(audioSampleBuffer);
-    m_comboBox.addItem(file.getFileName(), m_comboBox.getNumItems() + 1);
+    m_comboBox.addItem(file.getFileName(), m_comboBox.getNumItems() + 1);    
 }
 
 void AudioFilePlayer::output(AudioSampleBuffer *audioSampleBuffer)
