@@ -1,4 +1,4 @@
-#include "audiofileplayer.h"
+#include "AudioFilePlayer.h"
 
 AudioFilePlayer::AudioFilePlayer() :
     selectedFileIndex(-1),
@@ -115,4 +115,9 @@ void AudioFilePlayer::buttonClicked(Button *button)
     {
         m_playing = false;
     }
+}
+
+const std::vector<AudioSampleBuffer>& AudioFilePlayer::getBuffers() const
+{
+    return m_buffers;
 }

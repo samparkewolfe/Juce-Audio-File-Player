@@ -24,6 +24,8 @@ public:
     void comboBoxChanged(ComboBox *comboBoxThatHasChanged) override;
 
     void buttonClicked(Button *button) override;
+    
+    const std::vector<AudioSampleBuffer>& getBuffers() const;
 
 private:
     AudioFormatManager m_audioFormatManager;
