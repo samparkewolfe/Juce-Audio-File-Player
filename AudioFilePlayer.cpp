@@ -1,4 +1,5 @@
 #include "AudioFilePlayer.h"
+#include <algorithm>
 
 AudioFilePlayer::AudioFilePlayer() :
     selectedFileIndex(-1),
@@ -120,4 +121,16 @@ void AudioFilePlayer::buttonClicked(Button *button)
 const std::vector<AudioSampleBuffer>& AudioFilePlayer::getBuffers() const
 {
     return m_buffers;
+}
+
+AudioSampleBuffer* AudioFilePlayer::getBufferFromFileName(const juce::String& fileName)
+{
+    long indexOfFile = std::distance(m_files.begin(),
+                                    std::find_if(m_files.begin(),
+                                                 m_files.end(),
+                                                 [fileName](File& file)
+                                                 {
+                                                     return file.getFileName() == fileName;
+                                                 }));
+    return &m_buffers[indexOfFile];
 }

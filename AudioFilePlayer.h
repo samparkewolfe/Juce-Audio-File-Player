@@ -26,6 +26,8 @@ public:
     void buttonClicked(Button *button) override;
     
     const std::vector<AudioSampleBuffer>& getBuffers() const;
+    
+    AudioSampleBuffer* getBufferFromFileName(const juce::String& fileName);
 
 private:
     AudioFormatManager m_audioFormatManager;
